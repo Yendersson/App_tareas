@@ -25,7 +25,7 @@ const createTask =  async (req, res) =>{
             period,
             state,
             taskBy
-        });
+        }); 
 
         /*const taskCreated =*/ await newTask.save();
 

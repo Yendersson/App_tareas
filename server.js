@@ -3,6 +3,7 @@ import express from 'express';
 // Import Routes
 import routerAuth from './routes/auth.js';
 import routerTasks from './routes/tasks.js';
+import routerProfile from './routes/profile.js';
 
 // Connect Db
 import conection from './DB/DBConnection.js';
@@ -19,6 +20,8 @@ await conection();
 // Routes
 app.use('/auth', routerAuth);
 app.use('/task', routerTasks);
+app.use('/profile', routerProfile);
+
 
 const PORT = process.env.PORT || 8080;
 
