@@ -1,4 +1,6 @@
+import 'dotenv/config.js'
 import user from "../model/user.js";
+import  Jwt  from "jsonwebtoken";
 
 
 //-------------------------------------------------------------------------REGISTER-----------------------------------------------------------------------------------------
@@ -32,22 +34,37 @@ const register = async (req, res)=>{
 // ---------------------------------------------------------------------------------------------------LOGIN-----------------------------------------------------------------------
     const login = async (req,res)=>{
         let {email, password} = req.body;
-
+        
         try {
             const matchEmail = await user.findOne({email});
-    
-            if(!matchEmail){
-               return res.status(400).json('Email not exist');
-            }
-
-            if(matchEmail.password !== password){
-               return res.status(400).json('Password incorrect');
-            }
-
-            res.json('Access successfully')
             
+            if(!matchEmail){
+                return res.status(400).json('Email not exist');
+            }
+            
+            if(matchEmail.password !== password){
+                return res.status(400).json('Password incorrect');
+            }
+            
+            const {_id} = matchEmail;
+            
+            console.log(_id)
+            
+// ***********************************************GENERATE TOKEN****************************************************************************************
+            const accessToken = Jwt.sign({
+                id: _id
+            },
+            process.env.SECRET_TOKEN,
+            {expiresIn: '5m'});
+            
+            // res.json('Access successfully')
+            res.header('authorization', accessToken).json({
+                token: accessToken,
+                msg: 'Access successfully'
+            })
+
         } catch (error) {
-            res.status(500).json('error in login')
+            res.status(500).json('Error in login')
         }
     }
 

@@ -1,20 +1,19 @@
 import express from 'express';
 import Tasks from '../controllers/task.js';
+import validateJWT from '../jwt/validateToken.js';
 
 const routerTasks = express.Router();
 
 // Get All tasks
-routerTasks.get('/:id', Tasks.getTask);
+routerTasks.get('/:id', validateJWT.validateToken, Tasks.getTask);
 
 // Create a task
-routerTasks.post('/', Tasks.createTask);
+routerTasks.post('/', validateJWT.validateToken, Tasks.createTask);
 
 // Modified a taks
-routerTasks.put('/:id', Tasks.modifiedTask);
+routerTasks.put('/:id', validateJWT.validateToken, Tasks.modifiedTask);
 
 // Delete a task
-routerTasks.delete('/:id', Tasks.deletedTask);
-
-
+routerTasks.delete('/:id', validateJWT.validateToken, Tasks.deletedTask);
 
 export default routerTasks;
