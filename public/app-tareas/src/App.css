@@ -1,0 +1,30 @@
+
+.nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: white;
+    pointer-events: none;
+    opacity: 0;
+    transition: 0.4s;
+}
+
+.nav__container{
+    background: white;
+}
+
+.nav-show{
+    opacity: 1;
+    pointer-events: unset;
+}
+
+.nav__ul{
+    list-style: none;
+    padding: 2em;
+}
+
+.text-nav{
+    padding: 1em;
+}

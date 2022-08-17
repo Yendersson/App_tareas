@@ -1,0 +1,37 @@
+
+
+.login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    background: #000000bd;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.7s;
+}
+
+.login-show{
+    opacity: 1;
+    pointer-events: unset;
+}
+
+.login-container{
+    max-width: 400px;
+    width: 80%;
+    background-color: white;
+    padding: 2em;
+    border-radius: 1em;
+}
+
+.login-container label{
+    display: block;
+}
+
+span{
+    display: block;
+}

@@ -1,0 +1,67 @@
+.bar_task{
+    max-width: 600px;
+    width: 90%;
+    margin: auto;
+    background: white;
+    border: 1px solid black;
+    border-radius: 1em;
+    padding: 0.5em;
+}
+
+.bar_task-creating{
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.boton_task{
+    border-radius: 0.5em;
+
+}
+
+.bar_task-flex{
+    display: flex;
+    justify-content: space-between;
+}
+
+.creating_task{
+    display: none;
+    max-width: 600px;
+    width: 90%;
+    margin: auto;
+    border: 1px solid black;
+    border-radius: 1em;
+    padding: 0.5em;
+}
+
+.creating_task-show{
+    display: block;
+}
+
+.creating_task label, input{
+    display: block;
+    padding: 0.5em;
+}
+
+.creating_task input, textarea{
+    box-sizing: border-box;
+    width: 100%;
+    padding: 1em;
+    border-radius: 0.5em;
+    border: 1px solid grey;
+}
+
+.creating_task textarea{
+    height: 200px;
+}
+
+
+.importan_checkbox{
+    display: inline;
+}
+
+.period_input{
+    display: inline;
+    width: 200px;
+}
+
+
