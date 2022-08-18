@@ -1,0 +1,13 @@
+.profile-container{
+    max-width: 600px;
+    width: 90%;
+    margin: auto;
+    border: 1px solid black;
+    border-radius: 0.5em;
+}
+
+.table-data{
+    width: 100%;
+    text-align: center;
+    
+}

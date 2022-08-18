@@ -4,12 +4,13 @@ import { Route, Routes } from 'react-router-dom';
 
 // components
 
+// COMPONENTS
 import { Navbar } from './navbar/Navbar';
+
+// Pages
 import { Index } from './pages/Index';
 import { Task } from './pages/Tasks';
 import { MyProfile } from './pages/MyProfile';
-
-
 
 function App() {
   return (
@@ -19,13 +20,9 @@ function App() {
         <Navbar />
 
         <Routes>
-          
-
           <Route index element={<Index />} />
           <Route path='task' element={<Task />} />
           <Route path='profile' element={<MyProfile />} />
-
-
         </Routes>
       
       </BrowserRouter>

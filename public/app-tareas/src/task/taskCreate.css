@@ -64,4 +64,35 @@
     width: 200px;
 }
 
+.bar_task-grid{
+    display: grid;
+    grid-template-columns: 2fr auto;
+    align-items: center;
+}
+
+.task-botons button{
+    border-radius: 50%;
+
+}
+
+.status_date-flex{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.task_container{
+    display: none;
+}
+
+.back-task{
+    width: 100%;
+    background: #eee;
+    border: none;
+    padding: 0.5em;
+}
+
+.show-task{
+    display: block;
+}
+
 

@@ -27,14 +27,13 @@ export const Navbar = ()=>{
                     </li>
                     {links.map((link, index) => {
                         return(
-                            <li key={index} className={link.cName} onClick={showNavbar}>
-                                <NavLink to={link.path}>{link.title}</NavLink>
+                            <li key={index} className={link.cName} >
+                                <NavLink to={link.path} onClick={showNavbar}>{link.title}</NavLink>
                                 <hr />
                                 </li>
                                 
                             )
                         }) }
-
                 </ul>
                 </div>
             </nav>

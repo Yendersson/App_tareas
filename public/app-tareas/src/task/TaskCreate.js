@@ -3,9 +3,12 @@ import './taskCreate.css';
 import {GoPlus} from 'react-icons/go'
 import { useState } from 'react';
 
-function TaskCreate(){
+function TaskCreate(props){
 
     const [add, setAdd] = useState(false);
+
+    let {posted} = props
+    console.log(posted)
 
     function addTask(){
         setAdd(!add);
@@ -15,7 +18,7 @@ function TaskCreate(){
         <>
         <div className={add? 'bar_task bar_task-creating': 'bar_task'}>
             <div className='bar_task-flex'>
-                <p>Create Task</p> 
+                <p>Create Task and {posted}</p> 
                 
                 <button className='boton_task' onClick={addTask}>
                     <GoPlus/>
