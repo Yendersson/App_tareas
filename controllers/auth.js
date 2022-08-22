@@ -2,7 +2,6 @@ import 'dotenv/config.js'
 import user from "../model/user.js";
 import  Jwt  from "jsonwebtoken";
 
-
 //-------------------------------------------------------------------------REGISTER-----------------------------------------------------------------------------------------
 const register = async (req, res)=>{
     let {name, email, username, password} = req.body;
@@ -12,7 +11,7 @@ const register = async (req, res)=>{
         const isUserNameExist = await user.findOne({username: username});
 
         if(isEmailExist || isUserNameExist){
-            return res.status(400).json('This fields already exist');
+            return res.status(400).json({error:'This fields already exist'});
         }
 
         const newUser = new user({
@@ -24,10 +23,12 @@ const register = async (req, res)=>{
 
         const userCreated = await newUser.save();
         console.log(userCreated);
-        res.json('registred succesfully');
+        res.json({error: null,
+        msg:'registred succesfully'
+        });
 
     } catch (error) {
-        res.status(500).json('Problem with server to register', error);
+        res.status(500).json('Problem with server to register');
     }    
 }
 
@@ -39,11 +40,12 @@ const register = async (req, res)=>{
             const matchEmail = await user.findOne({email});
             
             if(!matchEmail){
-                return res.status(400).json('Email not exist');
+                console.log('email fail');
+                return res.status(400).json({error: 'Email not exist'});
             }
             
             if(matchEmail.password !== password){
-                return res.status(400).json('Password incorrect');
+                return res.status(400).json({error:'Password incorrect'});
             }
             
             const {_id} = matchEmail;
@@ -58,10 +60,13 @@ const register = async (req, res)=>{
             {expiresIn: '5m'});
             
             // res.json('Access successfully')
-            res.header('authorization', accessToken).json({
+            res.set('Authorization', accessToken).json({
+                error: null,
                 token: accessToken,
+                id: _id,
                 msg: 'Access successfully'
             })
+         
 
         } catch (error) {
             res.status(500).json('Error in login')

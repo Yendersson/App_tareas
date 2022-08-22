@@ -8,7 +8,7 @@ const routerTasks = express.Router();
 routerTasks.get('/:id', validateJWT.validateToken, Tasks.getTask);
 
 // Create a task
-routerTasks.post('/', validateJWT.validateToken, Tasks.createTask);
+routerTasks.post('/:id', validateJWT.validateToken, Tasks.createTask);
 
 // Modified a taks
 routerTasks.put('/:id', validateJWT.validateToken, Tasks.modifiedTask);

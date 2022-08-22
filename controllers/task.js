@@ -5,7 +5,7 @@ const getTask = async (req, res) =>{
 
     try {
         const tasksById = await tasks.find({taskBy: id}).
-        populate('taskBy', {name: 0, email: 0, password: 0});
+        populate('taskBy', {name: 0, email: 0, password: 0}).lean();
 
         res.json(tasksById);
         
@@ -14,8 +14,10 @@ const getTask = async (req, res) =>{
     } 
 }
 
+
 const createTask =  async (req, res) =>{
-    const {title, description, important, period, state, taskBy='62f5b8d7badb25de84d583db'} = req.body
+    let {id} = req.params
+    const {title, description, important, period, state, taskBy=id} = req.body
 
     try {
         const newTask = new tasks({
