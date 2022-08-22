@@ -7,11 +7,14 @@ import {IoIosArrowDropup} from 'react-icons/io'
 import { useState } from 'react';
 
 export const TaskCreated = (prop)=>{
+    
     const [task, setTaskShow] = useState(false);
 
     function showTask(){
         setTaskShow(!task);
     }
+
+
 
     console.log(task)
 

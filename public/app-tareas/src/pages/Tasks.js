@@ -3,21 +3,26 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { TaskCreated } from "../task/TaskCreated";
 
-const url = 'https://62d7fab69c8b5185c78048d2.mockapi.io/productos';
-
 export const Task = ()=>{
+
+    const client = axios.create({
+        baseURL : 'http://localhost:8080/task/',
+        headers :{'Authorization': localStorage.getItem('token')}
+    })
 
     const [post, setPost] = useState(null);
 
     // EFFECT
         useEffect(()=>{
             async function getInfo(){
-                const response = await axios(url);
+                const response = await client.get(localStorage.getItem('_id'))
+                console.log(response.data)
                 setPost(response.data);
             }
             getInfo();
-        }, []);
+        });
 
+        console.log(post)
     return(
         <>
         <h1>Tasks</h1>
@@ -26,17 +31,9 @@ export const Task = ()=>{
 
             {post && post.map((posted, index) => {
                 return(
-                    <TaskCreated key={index} post={posted.nombre} />
+                    <TaskCreated key={index} post={posted.title} />
                 )
             })}
-            {/* <TaskCreated /> */}
-            {/* <TaskCreated /> */}
-
-            {/* {post && post.map((posted,index)=>{
-                return(
-                    <TaskCreate key={index} posted={posted.nombre} />
-                )
-            })} */}
         </>
 
     )

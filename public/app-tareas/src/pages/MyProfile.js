@@ -2,17 +2,19 @@ import './MyProfile.css'
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-const url = 'https://jsonplaceholder.typicode.com/posts/1'
-
 export const MyProfile = ()=>{
+    const client = axios.create({
+        baseURL : 'http://localhost:8080/profile/',
+        headers :{'Authorization': localStorage.getItem('token')}
+    })
     // STATE
     const [post, setPost] = useState(null);
 
 // EFFECT
     useEffect(()=>{
         async function getInfo(){
-            const response = await axios(url);
-            setPost(response.data);
+            const response = await client.get(localStorage.getItem('_id'));
+            setPost(response.data.data);
         }
         getInfo();
     }, []);
@@ -26,21 +28,26 @@ export const MyProfile = ()=>{
         <div className='profile-container'>
             <h2>Datos</h2>
             <table classNa me='table-data'>
+                {post && 
+                <>
+                
                 <tr>
                     <th>Nombre:</th>
-                    <th>Yender</th>
+                    <th>{post.name}</th>
                     <th><button>Edit</button></th>
                 </tr>
                 <tr>
                     <th>Username:</th>
-                    <th>yender123</th>
+                    <th>{post.username}</th>
                     <th><button>Edit</button></th>
                 </tr>
                 <tr>
                     <th>Email</th>
-                    <th>@mail.com</th>
+                    <th>{post.email}</th>
                     <th><button>Edit</button></th>
                 </tr>
+                </>
+}
             </table>
             <hr />
 
@@ -54,7 +61,7 @@ export const MyProfile = ()=>{
                     
                 </tr>
                 <tr>
-                    <th>{post? post.title: null}</th>
+                    <th>{post? post.name: null}</th>
                     <th>incomplete</th>
                     <th>21/02/2022</th>
                 </tr>
