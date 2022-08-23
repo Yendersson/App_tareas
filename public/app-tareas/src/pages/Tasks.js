@@ -20,9 +20,8 @@ export const Task = ()=>{
                 setPost(response.data);
             }
             getInfo();
-        });
+        },[]);
 
-        console.log(post)
     return(
         <>
         <h1>Tasks</h1>
@@ -31,7 +30,7 @@ export const Task = ()=>{
 
             {post && post.map((posted, index) => {
                 return(
-                    <TaskCreated key={index} post={posted.title} />
+                    <TaskCreated key={index} post={posted} />
                 )
             })}
         </>
