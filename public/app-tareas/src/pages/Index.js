@@ -21,7 +21,6 @@ export const Index = () => {
 
 
     function login(index) {
-        // console.log(index)
         setShowLogin(modalAuth[index]);
     }
 
@@ -34,11 +33,8 @@ export const Index = () => {
 
     async function authentication(e) {
         e.preventDefault()
-
-        console.log(data);
         axios.post('http://localhost:8080/auth/login', data)
             .then(response => {
-                console.log(response.data)
                 if(response.data.error === null){
                     localStorage.setItem('_id', response.data.id);
                     localStorage.setItem('token', response.data.token);

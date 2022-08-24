@@ -11,3 +11,11 @@
     text-align: center;
     
 }
+
+.btn-change-profile{
+    display: none;
+}
+
+.show-edit-profile{
+    display: block;
+}

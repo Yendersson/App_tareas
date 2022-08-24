@@ -9,43 +9,73 @@ export const MyProfile = ()=>{
     })
     // STATE
     const [post, setPost] = useState(null);
+    const [edit, setEdit] = useState(false);
+    const [dataProfile, setProfileData] = useState({});
 
 // EFFECT
     useEffect(()=>{
         async function getInfo(){
             const response = await client.get(localStorage.getItem('_id'));
-            setPost(response.data.data);
+            setPost([response.data.data, response.data.task]);
         }
         getInfo();
     }, []);
 
-        console.log(post)
-    // RENDER
+    function edited(e){
+        e.target.disabled = true;
+        setEdit(!edit)
+    }
+
+    function handleSubmit(e){
+        const name = e.target.name;
+        const value = e.target.value;
+        
+        setProfileData(values=>({...values, [name]: value}))
+    }
+
+    async function editProfile(){
+        const response = await client.put(localStorage.getItem('_id'), dataProfile)
+        console.log(response.data);
+        setEdit(!edit);
+    }
+
+    async function deleteProfile(){
+        const response = await client.delete(localStorage.getItem('_id'))
+        console.log(response.data);
+    }
+
     return(
         <>
         <h1>My Profile</h1>
         
         <div className='profile-container'>
             <h2>Datos</h2>
-            <table classNa me='table-data'>
+            <table classNanme='table-data'>
                 {post && 
                 <>
                 
                 <tr>
                     <th>Nombre:</th>
-                    <th>{post.name}</th>
-                    <th><button>Edit</button></th>
+                    <th>
+        
+                        {edit? <input type="text" name='name' placeholder={post[0].name} onChange={handleSubmit} />: <p>{post[0].name}</p> }
+                    </th>
+                    {/* <th></th> */}
                 </tr>
                 <tr>
                     <th>Username:</th>
-                    <th>{post.username}</th>
-                    <th><button>Edit</button></th>
+                    <th>{edit? <input type="text" name='name' placeholder={post[0].username} onChange={handleSubmit} />: <p>{post[0].username}</p> }</th>
+                    {/* <th><button>Edit</button></th> */}
                 </tr>
                 <tr>
                     <th>Email</th>
-                    <th>{post.email}</th>
-                    <th><button>Edit</button></th>
+                    <th>{edit? <input type="text" name='name' placeholder={post[0].email} onChange={handleSubmit} />: <p>{post[0].email}</p> }</th>
+                    {/* <th><button>Edit</button></th> */}
                 </tr>
+                <button onClick={(e)=> edited(e)} >Edit</button>
+                <button className={edit? 'btn-change-profile show-edit-profile': 'btn-change-profile'} onClick={editProfile}>Update</button>
+
+                <button onClick={deleteProfile}>Delete Profile</button>
                 </>
 }
             </table>
@@ -60,11 +90,17 @@ export const MyProfile = ()=>{
                     <th><thead>Date</thead></th>
                     
                 </tr>
-                <tr>
-                    <th>{post? post.name: null}</th>
-                    <th>incomplete</th>
-                    <th>21/02/2022</th>
+                {post && post[1].map((task, index) => {
+                    return(
+                <tr key={index}>
+                    <th>{task.title}</th>
+                    <th>{task.state}...</th>
+                    <th>{task.period}</th>
                 </tr>
+                    )
+                })
+                
+                }
             </table>
         </div>
         </>

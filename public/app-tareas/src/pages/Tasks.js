@@ -16,7 +16,7 @@ export const Task = ()=>{
         useEffect(()=>{
             async function getInfo(){
                 const response = await client.get(localStorage.getItem('_id'))
-                console.log(response.data)
+                console.log(typeof response.data[1].state)
                 setPost(response.data);
             }
             getInfo();
