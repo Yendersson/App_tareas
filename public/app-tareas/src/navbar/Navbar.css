@@ -1,0 +1,13 @@
+.nav{
+    background: #52BE80 ;
+}
+
+.nav ul, li{
+    background: #52BE80 ;
+}
+
+.header{
+    background-color: #52BE80;
+    padding: 0.5em;
+    align-items: center;
+}

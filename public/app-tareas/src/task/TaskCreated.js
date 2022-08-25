@@ -52,44 +52,53 @@ export const TaskCreated = (prop) => {
     function disableOffInputa(e) {
         e.preventDefault()
         const inputs = document.querySelectorAll('input');
+        const textareas = document.querySelector('#description');
         console.log(inputs)
+        console.log(textareas)
+         
 
-        inputs.forEach(input => input.disabled = false);
+        inputs.forEach(input => input.readOnly = false);
+        textareas.readOnly= false
     }
 
     return (
 
-        <div className='bar_task'>
+        <div className='bar_task mb-3 shadow ' style={{backgroundColor: prop.post.state === 'complete'? '#82E0AA ':  prop.post.state === 'incomplete'? 'red': 'white' }}>
             <div className='bar_task-grid'>
                 <div className='text-title'>
-                    <p>{prop.post.title}</p>
+                    <h4>{prop.post.title}</h4>
                 </div>
                 <div className='task-botons'>
-                    <button onClick={deleteTask}><AiOutlineClose /></button>
-                    <button><AiOutlineEdit /></button>
-                    <button onClick={checked}><BsCheckLg /></button>
+                    <button onClick={deleteTask} className="btn-danger mr-2"><AiOutlineClose className='text-light' /></button>
+                    {/* <button className='bg-warning'><AiOutlineEdit className='text-light' /></button> */}
+                    <button onClick={checked} className="bg-success"><BsCheckLg className='text-light'/></button>
                 </div>
             </div>
             <div className='status_date-flex'>
-                <p>status: {prop.post.state}</p>
-                <p onClick={showTask}>view...</p>
-                <p>Date: 20/03/2022</p>
+                <p>{prop.post.state}</p>
+                <p>20/03/2022</p>
             </div>
+                <span onClick={showTask} className='text-primary' style={{display: task? 'none': 'block'}} >view...</span>
 
             <div className={task ? 'task_container show-task' : 'task_container'}>
 
                 <form onSubmit={e => updateTask(e)}>
 
                     <input 
+                    className='mb-2'
                     type="text" 
                     name="title" 
                     placeholder={prop.post.title} 
                     onChange={(e) => handleSubmit(e)} 
+                    readOnly
                     />
                     <textarea 
+                    readOnly
+                    className='bg-light'
+                    id='description'
                     name="description"
                      placeholder={prop.post.description} 
-                     onChange={(e) => handleSubmit(e)}>
+                     onChange={(e) => handleSubmit(e)} >
 
                      </textarea>
                     <input 
@@ -98,11 +107,11 @@ export const TaskCreated = (prop) => {
                     onChange={(e) => handleSubmit(e)} 
                     />
 
-                    <button >Update</button>
+                    <button className='btn-task btn-info mt-2'>Update</button>
 
                 </form>
                 
-                <button onClick={(e) => disableOffInputa(e)}><AiOutlineEdit /></button>
+                <button className='btn-warning m-2 btn-task' id='btn-edit' onClick={(e) => disableOffInputa(e)}><AiOutlineEdit />Edit</button>
 
                 <button className='back-task' onClick={showTask}><IoIosArrowDropup /></button>
             </div>

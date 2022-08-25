@@ -107,7 +107,7 @@ export const Index = () => {
 
 
 
-            <button onClick={() => login(1)}> Try it </button>
+            <button className='btn btn-success' onClick={() => login(1)}> Try it </button>
 
         </>
     )

@@ -5,14 +5,19 @@
     left: 0;
     bottom: 0;
     right: 0;
-    background: white;
+    background: #52BE80 ;
     pointer-events: none;
     opacity: 0;
     transition: 0.4s;
 }
 
 .nav__container{
-    background: white;
+    background: #52BE80 ;
+    color: white;
+}
+
+.nav__container a{
+    color: white;
 }
 
 .nav-show{
@@ -27,4 +32,8 @@
 
 .text-nav{
     padding: 1em;
+}
+
+button{
+    border: none;
 }

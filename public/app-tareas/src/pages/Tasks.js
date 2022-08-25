@@ -1,3 +1,5 @@
+import './Tasks.css'
+
 import TaskCreate from "../task/TaskCreate"
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -24,8 +26,10 @@ export const Task = ()=>{
 
     return(
         <>
-        <h1>Tasks</h1>
-        
+        <h1>Your Tasks</h1>
+        <div className="container-tasks">
+
+
             <TaskCreate/>
 
             {post && post.map((posted, index) => {
@@ -33,6 +37,9 @@ export const Task = ()=>{
                     <TaskCreated key={index} post={posted} />
                 )
             })}
+
+
+        </div>
         </>
 
     )

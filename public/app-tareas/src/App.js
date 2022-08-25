@@ -14,7 +14,7 @@ import { MyProfile } from './pages/MyProfile';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App vh-100">
 
       <BrowserRouter>
         <Navbar />

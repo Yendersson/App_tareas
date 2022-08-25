@@ -1,16 +1,18 @@
 .bar_task{
     max-width: 600px;
-    width: 90%;
+    width: 100%;
     margin: auto;
     background: white;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     border-radius: 1em;
     padding: 0.5em;
+    transition: 0.5s;
 }
 
 .bar_task-creating{
     opacity: 0.3;
     pointer-events: none;
+
 }
 
 .boton_task{
@@ -26,11 +28,12 @@
 .creating_task{
     display: none;
     max-width: 600px;
-    width: 90%;
+    width: 100%;
     margin: auto;
-    border: 1px solid black;
+    background-color: white;
+    /* border: 1px solid black; */
     border-radius: 1em;
-    padding: 0.5em;
+    padding: 1em;
 }
 
 .creating_task-show{
@@ -42,12 +45,13 @@
     padding: 0.5em;
 }
 
-.creating_task input, textarea{
+/*.creating_task*/ input, textarea{
     box-sizing: border-box;
     width: 100%;
-    padding: 1em;
+    padding: 0.5em;
     border-radius: 0.5em;
-    border: 1px solid grey;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .creating_task textarea{
@@ -71,8 +75,12 @@
 }
 
 .task-botons button{
-    border-radius: 50%;
+    border-radius: 0.5em;
+}
 
+.btn-task{
+    border-radius: 0.5em;
+    padding: 0.5em;
 }
 
 .status_date-flex{
@@ -82,6 +90,7 @@
 
 .task_container{
     display: none;
+    transition: 0.5s;
 }
 
 .back-task{
@@ -93,6 +102,7 @@
 
 .show-task{
     display: block;
+
 }
 
 
