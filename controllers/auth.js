@@ -57,7 +57,7 @@ const register = async (req, res)=>{
                 id: _id
             },
             process.env.SECRET_TOKEN,
-            {expiresIn: '5m'});
+            {expiresIn: '1d'});
             
             // res.json('Access successfully')
             res.set('Authorization', accessToken).json({

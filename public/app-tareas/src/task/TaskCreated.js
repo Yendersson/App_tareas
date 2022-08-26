@@ -61,6 +61,9 @@ export const TaskCreated = (prop) => {
         textareas.readOnly= false
     }
 
+    // const dateNow = new Date();
+    // console.log(dateNow.toLocaleString());
+
     return (
 
         <div className='bar_task mb-3 shadow ' style={{backgroundColor: prop.post.state === 'complete'? '#82E0AA ':  prop.post.state === 'incomplete'? 'red': 'white' }}>
@@ -76,7 +79,7 @@ export const TaskCreated = (prop) => {
             </div>
             <div className='status_date-flex'>
                 <p>{prop.post.state}</p>
-                <p>20/03/2022</p>
+                <p>{prop.post.period.split('T')[0]}</p>
             </div>
                 <span onClick={showTask} className='text-primary' style={{display: task? 'none': 'block'}} >view...</span>
 
@@ -103,7 +106,8 @@ export const TaskCreated = (prop) => {
                      </textarea>
                     <input 
                     type="date" 
-                    name="period" 
+                    name="period"
+                    placeholder={prop.post.period.split('T')[0]} 
                     onChange={(e) => handleSubmit(e)} 
                     />
 

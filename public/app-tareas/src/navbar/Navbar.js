@@ -25,16 +25,22 @@ export const Navbar = () => {
             <header className='w-100 header d-flex justify-content-between'>
 
                 <div className='button__nav' onClick={showNavbar}>
-                    <GiHamburgerMenu />
+                    <GiHamburgerMenu className='button_nav-inside'/>
                 </div>
                 <div>
                     <h2>APP TASK</h2>
                 </div>
 
                 <div>
+                    {!localStorage.getItem('_id')  &&
+                        <a href="/">Sing in</a>
+                    }
+                    {localStorage.getItem('_id') && 
+                    
                     <a onClick={logOut} href="/">
                         <button className='btn btn-danger'>Log out</button>
                     </a>
+                    }
                 </div>
             </header>
             <nav className={showNav ? 'nav nav-show' : 'nav'}>

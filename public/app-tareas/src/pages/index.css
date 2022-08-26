@@ -1,4 +1,7 @@
-
+.index-container{
+    width: 90%;
+    margin: auto;
+}
 
 .login, .register{
     display: flex;

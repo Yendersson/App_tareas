@@ -13,13 +13,20 @@ export const Task = ()=>{
     })
 
     const [post, setPost] = useState(null);
+    const [erro, setError] = useState(null)
 
     // EFFECT
         useEffect(()=>{
             async function getInfo(){
-                const response = await client.get(localStorage.getItem('_id'))
-                console.log(typeof response.data[1].state)
-                setPost(response.data);
+
+                try {
+                    const response = await client.get(localStorage.getItem('_id'))
+                    setPost(response.data);
+                    setError(null)
+                    
+                } catch (error) {
+                    setError('You must to be logged to access to task');
+                }
             }
             getInfo();
         },[]);
@@ -27,10 +34,20 @@ export const Task = ()=>{
     return(
         <>
         <h1>Your Tasks</h1>
+        
+        {erro && 
+                <div className="alert alert-warning" role="alert">
+                {erro}. Please go to index and sing on trought this <a href="/" className="alert-link">link</a>.
+              </div>
+            }
+
+        {!erro && 
+        
+        
         <div className="container-tasks">
 
-
             <TaskCreate/>
+            
 
             {post && post.map((posted, index) => {
                 return(
@@ -40,6 +57,8 @@ export const Task = ()=>{
 
 
         </div>
+        }
+
         </>
 
     )

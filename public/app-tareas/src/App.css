@@ -9,6 +9,7 @@
     pointer-events: none;
     opacity: 0;
     transition: 0.4s;
+    z-index: 3;
 }
 
 .nav__container{
@@ -36,4 +37,9 @@
 
 button{
     border: none;
+    cursor: pointer;
+}
+
+.button__nav{
+    cursor: pointer;
 }

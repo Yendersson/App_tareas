@@ -11,12 +11,19 @@ export const MyProfile = () => {
     const [post, setPost] = useState(null);
     const [edit, setEdit] = useState(false);
     const [dataProfile, setProfileData] = useState({});
+    const [error, setError] = useState(null); 
 
     // EFFECT
     useEffect(() => {
         async function getInfo() {
-            const response = await client.get(localStorage.getItem('_id'));
-            setPost([response.data.data, response.data.task]);
+            try {
+                const response = await client.get(localStorage.getItem('_id'));
+                setPost([response.data.data, response.data.task]);
+                setError(null)
+                
+            } catch (error) {
+                setError('You must to be logged to access to task')
+            }
         }
         getInfo();
     }, []);
@@ -48,6 +55,13 @@ export const MyProfile = () => {
         <>
             <h1>My Profile</h1>
 
+            {error && 
+                 <div className="alert alert-warning" role="alert">
+                 {error}. Please go to index and sing on trought this <a href="/" className="alert-link">link</a>.
+               </div>
+            }
+
+            {!error && 
             <div className='profile-container'>
                 <h2>Datos</h2>
                 <table className='table-data'>
@@ -106,7 +120,7 @@ export const MyProfile = () => {
                                     <th scope="row">{index + 1}</th>
                                     <td>{task.title}</td>
                                     <td style={{ color: task.state === 'complete' ? 'green' : task.state === 'incomplete' ? 'red' : 'black' }}>{task.state}</td>
-                                    <td>{task.period}</td>
+                                    <td>{task.period.split('T')[0]}</td>
                                 </tr>
 
                             )
@@ -117,6 +131,8 @@ export const MyProfile = () => {
                 </div>
 
             </div>
+            }
+
         </>
     )
 }
